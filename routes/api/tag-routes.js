@@ -33,10 +33,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
-    const newTag = await Tag.create(req.body
-      // tag_name: req.params.tag_name,
-    )
-    console.log(req.params.tag_name)
+    const newTag = await Tag.create(req.body)
     if (!newTag) {
       res.status(404).json('Please enter a tag name.')
     }
@@ -51,9 +48,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
-    const tagID = await Tag.update({
-      tag_name: req.params.tag_name
-    },
+    const tagID = await Tag.update(req.body,
     {
       where: {
         id: req.params.id
